@@ -22,8 +22,13 @@
         tools:layout="@layout/fragment_gallery">
 
         <action
-            android:id="@+id/action_SecondFragment_to_pictureFragment"
-            app:destination="@id/pictureFragment" />
+            android:id="@+id/action_galleryFragment_to_pictureFragment"
+            app:destination="@id/pictureFragment">
+            <argument
+                android:name="path"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/pictureFragment"
