@@ -3,26 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.vexdev.simplepic.FirstFragment"
+        android:id="@+id/mainFragment"
+        android:name="com.vexdev.simplepic.screen.main.MainFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_main">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/galleryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.vexdev.simplepic.SecondFragment"
+        android:id="@+id/galleryFragment"
+        android:name="com.vexdev.simplepic.screen.gallery.GalleryFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_gallery">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_pictureFragment"
+            app:destination="@id/pictureFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/pictureFragment"
+        android:name="com.vexdev.simplepic.screen.picture.PictureFragment"
+        android:label="fragment_picture"
+        tools:layout="@layout/fragment_picture" />
 </navigation>
