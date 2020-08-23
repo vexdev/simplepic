@@ -14,6 +14,10 @@ import com.vexdev.simplepic.R
 import com.vexdev.simplepic.core.utilities.timestampToString
 import java.io.File
 
+/**
+ * This adapter is based on a [PagedListAdapter] and provides default implementations for paging and
+ * updates based on the provided [LiveData].
+ */
 class PictureAdapter(
     private val context: Context,
     private val clickListener: (File?) -> Unit

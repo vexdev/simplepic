@@ -11,6 +11,11 @@ in [The JetPack Guide](https://developer.android.com/jetpack/guide).
 However please note that I really believe that every application should be carefully architected
 according to its very specific needs and that so far I've been successfully using various different 
 architectures not necessarily relying on third party libraries.
+Not everywhere the full ViewModel/Repository separation was implemented, but only where it made 
+sense.
+
+Note that up navigation was purposely not implemented. Back navigation in this simple hierarchy
+should suffice.
 
 ### User Experience
 

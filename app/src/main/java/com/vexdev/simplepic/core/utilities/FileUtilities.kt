@@ -24,6 +24,12 @@ class FileDataSourceFactory(private val directory: File?) : DataSource.Factory<I
     override fun create(): DataSource<Int, File> = FileSimpleDataSource(directory)
 }
 
+/**
+ * This special [PositionalDataSource] is based on files and abstracts away a provider of such files
+ * allowing for paged loading.
+ * It may be switched in the future for a different implementation (Database based for example, as
+ * Room comes already with a default implementation)
+ */
 class FileSimpleDataSource(private val directory: File?) : PositionalDataSource<File>() {
 
     override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<File>) {
