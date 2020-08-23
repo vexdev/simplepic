@@ -12,9 +12,13 @@ However please note that I really believe that every application should be caref
 according to its very specific needs and that so far I've been successfully using various different 
 architectures not necessarily relying on third party libraries.
 
-
 ### User Experience
 
 I would have pushed for having the gallery as the main screen, fitting well with the floating action
 button, however in this case I decided to respect the request of the evaluators to have the gallery 
 as a separate screen.
+
+### Usage of LiveData
+
+I'm not a big fan of LiveData and would normally make use of RxJava. That however requires some more
+thinking about lifecycle safety. I decided to use LiveData instead as that comes provided already.
