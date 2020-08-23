@@ -27,3 +27,11 @@ as a separate screen.
 
 I'm not a big fan of LiveData and would normally make use of RxJava. That however requires some more
 thinking about lifecycle safety. I decided to use LiveData instead as that comes provided already.
+
+### Testing
+
+Many more tests could be developed, I choose to setup very few because adding more would require
+more mocking to be put in place, and possibly additional technologies such as dependency injection 
+which I decided not to use for this time-limited implementation.
+
+Yet I demonstrated the approach to Unit testing as well as Instrumentation (UI) Testing.

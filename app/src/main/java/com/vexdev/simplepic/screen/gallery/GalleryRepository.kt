@@ -8,9 +8,9 @@ import androidx.paging.PagedList
 import com.vexdev.simplepic.core.utilities.FileDataSourceFactory
 import java.io.File
 
-class GalleryRepository(private val context: Context) {
+open class GalleryRepository(private val context: Context) {
 
-    fun getPictures(): LiveData<PagedList<File>> =
+    open fun getPictures(): LiveData<PagedList<File>> =
         LivePagedListBuilder(FileDataSourceFactory(getPicDirectory()), 20).build()
 
     private fun getPicDirectory(): File? =
