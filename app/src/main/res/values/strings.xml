@@ -14,4 +14,11 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="open_gallery">Open Gallery</string>
+
+    <string name="file_error">We\'re unfortunately unable to save the file.</string>
+
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="filename_dialog_title">Enter Filename</string>
+    <string name="filename_dialog_message">Name the picture you just took</string>
 </resources>
