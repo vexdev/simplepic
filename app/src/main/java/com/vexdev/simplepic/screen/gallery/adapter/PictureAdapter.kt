@@ -16,7 +16,7 @@ import java.io.File
 
 class PictureAdapter(
     private val context: Context,
-    private val clickListener: (File) -> Unit
+    private val clickListener: (File?) -> Unit
 ) :
     PagedListAdapter<File, PictureAdapter.ViewHolder?>(DIFF_CALLBACK) {
 
@@ -37,6 +37,7 @@ class PictureAdapter(
         Glide.with(context).load(file).into(viewHolder.img)
         viewHolder.title.text = file?.name
         viewHolder.time.text = file?.let { timestampToString(file.lastModified()) }
+        viewHolder.itemView.setOnClickListener { clickListener(file) }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

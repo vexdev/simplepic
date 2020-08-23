@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.vexdev.simplepic.R
@@ -28,6 +29,9 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = GridLayoutManager(requireContext(), 2)
         val adapter = PictureAdapter(requireContext()) { file -> viewModel.onPictureClick(file) }
+        viewModel.navigationEvent.observe(
+            viewLifecycleOwner,
+            Observer { findNavController().navigate(it) })
         viewModel.pictures.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
         galleryView.adapter = adapter
         galleryView.layoutManager = layoutManager

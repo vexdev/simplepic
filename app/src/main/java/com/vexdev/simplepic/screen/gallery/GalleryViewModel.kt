@@ -12,8 +12,10 @@ class GalleryViewModel(repository: GalleryRepository) : ViewModel(), NavigationP
     val pictures: LiveData<PagedList<File>> = repository.getPictures()
     override val navigationEvent: LiveEvent<NavDirections> = LiveEvent()
 
-    fun onPictureClick(picture: File) {
+    fun onPictureClick(picture: File?) {
         navigationEvent.value =
-            GalleryFragmentDirections.actionGalleryFragmentToPictureFragment(picture.absolutePath)
+            GalleryFragmentDirections.actionGalleryFragmentToPictureFragment(
+                picture?.absolutePath ?: ""
+            )
     }
 }

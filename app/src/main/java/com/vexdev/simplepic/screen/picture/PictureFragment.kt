@@ -7,15 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.vexdev.simplepic.R
+import java.io.File
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 class PictureFragment : Fragment() {
+    private val args: PictureFragmentArgs by navArgs()
     private val hideHandler = Handler()
 
     @Suppress("InlinedApi")
@@ -35,10 +40,6 @@ class PictureFragment : Fragment() {
         activity?.window?.decorView?.systemUiVisibility = flags
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
     }
-    private val showPart2Runnable = Runnable {
-        // Delayed display of UI elements
-        fullscreenContentControls?.visibility = View.VISIBLE
-    }
     private var visible: Boolean = false
     private val hideRunnable = Runnable { hide() }
 
@@ -54,9 +55,7 @@ class PictureFragment : Fragment() {
         false
     }
 
-    private var dummyButton: Button? = null
-    private var fullscreenContent: View? = null
-    private var fullscreenContentControls: View? = null
+    private var fullscreenContent: ImageView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,19 +67,12 @@ class PictureFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         visible = true
+        fullscreenContent = view.findViewById(R.id.image)
+        Glide.with(requireContext()).load(File(args.path)).into(fullscreenContent!!)
 
-        dummyButton = view.findViewById(R.id.dummy_button)
-        fullscreenContent = view.findViewById(R.id.fullscreen_content)
-        fullscreenContentControls = view.findViewById(R.id.fullscreen_content_controls)
         // Set up the user interaction to manually show or hide the system UI.
         fullscreenContent?.setOnClickListener { toggle() }
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        dummyButton?.setOnTouchListener(delayHideTouchListener)
     }
 
     override fun onResume() {
@@ -104,9 +96,7 @@ class PictureFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        dummyButton = null
         fullscreenContent = null
-        fullscreenContentControls = null
     }
 
     private fun toggle() {
@@ -119,11 +109,9 @@ class PictureFragment : Fragment() {
 
     private fun hide() {
         // Hide UI first
-        fullscreenContentControls?.visibility = View.GONE
         visible = false
 
         // Schedule a runnable to remove the status and navigation bar after a delay
-        hideHandler.removeCallbacks(showPart2Runnable)
         hideHandler.postDelayed(hidePart2Runnable, UI_ANIMATION_DELAY.toLong())
     }
 
@@ -137,7 +125,6 @@ class PictureFragment : Fragment() {
 
         // Schedule a runnable to display UI elements after a delay
         hideHandler.removeCallbacks(hidePart2Runnable)
-        hideHandler.postDelayed(showPart2Runnable, UI_ANIMATION_DELAY.toLong())
         (activity as? AppCompatActivity)?.supportActionBar?.show()
     }
 

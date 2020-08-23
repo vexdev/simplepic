@@ -24,15 +24,16 @@
         <action
             android:id="@+id/action_galleryFragment_to_pictureFragment"
             app:destination="@id/pictureFragment">
-            <argument
-                android:name="path"
-                android:defaultValue=""
-                app:argType="string" />
         </action>
     </fragment>
     <fragment
         android:id="@+id/pictureFragment"
         android:name="com.vexdev.simplepic.screen.picture.PictureFragment"
         android:label="fragment_picture"
-        tools:layout="@layout/fragment_picture" />
+        tools:layout="@layout/fragment_picture">
+        <argument
+            android:name="path"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>
